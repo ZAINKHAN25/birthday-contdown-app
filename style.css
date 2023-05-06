@@ -6,6 +6,7 @@
 
 body{
     overflow: hidden;
+    background-color: rgb(240, 251, 255);
 }
 
 .bodyofmodal{
@@ -18,6 +19,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .modal{
@@ -41,9 +43,14 @@ body{
 }
 
 .bodyreal{
+    padding: 10px 40px;
     width: 100vw;
     height: 100vh;
     z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(240, 251, 255);
 }
 
 .inputarea{
@@ -86,4 +93,77 @@ body{
 
 #button:hover{
     background-color: rgb(99, 165, 190);
+}
+
+.youwillbe{
+    color: hsl(205, 72%, 37%);
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.mainwork{
+    padding: 2px 50px;
+}
+
+.loremarea{
+    color: hsl(205, 72%, 70%);
+}
+
+.counter{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.daysincount{
+    background-color: hsl(205, 72%, 37%);
+    margin-right: 10px;
+    margin-top: 10px;
+    color: white;
+    font-size: 18px;
+    padding: 5px;
+}
+
+
+.fontweightbold{
+font-weight: bold;
+font-size: 22px;
+}
+
+.animation{
+    animation-name: myanimation;
+    animation-duration: 1s;
+}
+
+@keyframes myanimation{
+    0%{
+        transform: scaleX(100%);
+        transform: scaleY(100%);
+    }
+    100%{
+        transform: scaleY(0%);
+        transform: scaleX(0%);
+    }
+}
+
+
+
+
+
+
+@media (max-width: 660px) {
+    .bodyreal{
+        flex-direction: column !important;
+    }
+
+    .img img{
+        width: 60vw !important;
+    }
+
+    .bodyreal{
+        justify-content: space-evenly !important;
+    }
 }
