@@ -8,7 +8,6 @@ yeari = document.getElementById('yeari');
 button = document.getElementById("button");
 counter = document.getElementsByClassName('counter')[0];
 month = counter.children[0].children[0];
-days = counter.children[1].children[0];
 hours = counter.children[2].children[0];
 // seconds = counter.children[3].children[0];
 
@@ -28,31 +27,43 @@ button.addEventListener('click', ()=>{
 
     else{
         
-        let tempDate = new Date();
-
-        const inputdate = new Date(`${yeari.value}-${monthi.value}-${dayi.value}`);
-
-        // var msToday = tempDate.getTime();
-        // var msDoomsday = inputdate.getTime();
-
-        var msDiff =  tempDate.getTime() - inputdate.getTime();
-        console.log(msDiff);
-
-    
-        var months = ["Jan", "Feb", "Mar", "Apr","May", "Jun", "Jul", "Aug","Sep", "Oct", "Nov", "Dec"]
-
+        setInterval(()=>{            
+            days = document.querySelector('#day')
+        hours = document.querySelector('#hour')
+        minutes = document.querySelector('#minutes')
+        seconds = document.querySelector('#seconds')
         modal.classList.add('animation');
         setTimeout(()=>{
             bodyofmodal.classList.add('none');
         }, 10)
-        youwillbe.innerText = `Your age will be ${(tempDate.getFullYear() - yeari.value) + (1)} on ${dayi.value}/${months[(monthi.value) - 1]}/${tempDate.getFullYear()}`
+        var months = ["Jan", "Feb", "Mar", "Apr","May", "Jun", "Jul", "Aug","Sep", "Oct", "Nov", "Dec"];
 
-        month.innerText = `${(msDiff / (1000 * 60 * 60 * 24 * 30))}`
+        let cdate = new Date();
+        let futurefoo = new Date(`${cdate.getFullYear()}-${monthi.value}-${dayi.value}`);
+
+
+        youwillbe.innerText = `Your age will be ${(cdate.getFullYear() - yeari.value)} on ${dayi.value}/${months[(monthi.value) - 1]}/${cdate.getFullYear()}`
         
-        days.innerText = `${msDiff/ (1000 * 60 * 60 * 24)}`
-        console.log(dayi.value + " -> it is day")
-        console.log(monthi.value + " -> it is month")
-        console.log(yeari.value + " -> it is year")
+        if(futurefoo.getTime() >= cdate.getTime()){
+        let diffmilescnd = futurefoo.getTime() - cdate.getTime();
+
+        let dayss = Math.floor(diffmilescnd / 1000 / 60 / 60 / 24);
+        days.innerHTML = `${dayss}`
+        
+        let hourssnum = (Math.floor(diffmilescnd / 1000 / 60 / 60) - (Math.floor(diffmilescnd / 1000 / 60 / 60 / 24) * 24))
+        hours.innerHTML = `${hourssnum}`
+
+        let minutessnum = Math.floor(diffmilescnd / 1000 / 60 - (Math.floor(diffmilescnd / 1000 / 60 / 60) * 60))
+        minutes.innerHTML = `${minutessnum}`
+
+        let secondssnum = Math.floor(diffmilescnd / 1000) - ((Math.floor(diffmilescnd / 1000 / 60) * 60))
+        seconds.innerHTML = `${secondssnum}`}
+        else{
+            alert("nahi chala")
+        }
+    },1000)
+
+
 
     }
 
